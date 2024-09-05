@@ -9,7 +9,8 @@ import settings
 from . import messages, markups
 from .stategroups import (
     ClassSelection,
-    TimeSelection
+    TimeSelection,
+    MakeReport
 )
 
 from .utils import (
@@ -21,7 +22,8 @@ from .utils import (
     get_tomorrow_schedule,
     get_schedule_by_date,
     get_times_by_user,
-    write_auto_schedule
+    write_auto_schedule,
+    delete_time_by_index
 )
 
 bot = Bot(settings.TOKEN)
@@ -41,6 +43,28 @@ async def cmd_menu(message:Message):
         text=messages.message_menu,
         parse_mode="HTML",
         reply_markup=markups.get_menu_markup()
+    )
+
+@dp.message(Command("report"))
+async def cmd_report(message:Message, state: FSMContext):
+    await message.answer(
+        text="Напишите текст обращения одним сообщением. Чтобы отменить обращение используйте команду /cancel"
+    )
+    await state.set_state(MakeReport.writing_report)
+
+@dp.message(MakeReport.writing_report, Command("cancel"))
+async def cmd_cancel_writing_report(message: Message, state: FSMContext):
+    await state.clear()
+    await message.answer(
+        text="Вы отменили обращение в техническую поддержку!"
+    )
+
+@dp.message(MakeReport.writing_report)
+async def writing_report_at_state(message: Message, state: FSMContext):
+    await state.clear()
+    await bot.send_message(
+        chat_id=settings.ADMIN,
+        text=f'Обращение от пользователя @{message.from_user.username}. Id пользователя {message.from_user.id}\n Обращение: "{message.text}"'
     )
 
 @dp.callback_query(F.data == "set_time")
@@ -76,6 +100,39 @@ async def call_set_time(callback: CallbackQuery):
     )
     await callback.answer()
 
+@dp.message(Command("set_time"))
+async def cmd_set_time(message: Message):
+    times = await get_times_by_user(message.from_user.id)
+    match len(times):
+        case 0:
+            my_text="В данный момент у вас не установлено время автоматической отправки."
+            mk=markups.get_time_c_markup()
+        case 1 | 2:
+            my_text = ""
+            for time in times:
+                if time['mode'] == 'today':
+                    str_mode = '(Расписание на текущий день)'
+                else:
+                    str_mode = '(Расписание на следующий день)'
+                my_text+=f'{times.index(time)+1}. {time["value"]} {str_mode}\n'
+            mk=markups.get_time_cud_markup()
+        case 3: 
+            my_text = ""
+            for time in times:
+                if time['mode'] == 'today':
+                    str_mode = '(Расписание на текущий день)'
+                else:
+                    str_mode = '(Расписание на следующий день)'
+                my_text+=f'{times.index(time)+1}. {time["value"]} {str_mode}\n'
+            mk=markups.get_time_ud_markup()
+        case _:
+            ...
+    await message.answer(
+        text=my_text,
+        reply_markup=mk
+    )
+
+
 @dp.callback_query(F.data == "add_time_auto")
 async def call_add_time_auto(callback: CallbackQuery, state: FSMContext):
     await callback.message.edit_text(
@@ -83,6 +140,25 @@ async def call_add_time_auto(callback: CallbackQuery, state: FSMContext):
         reply_markup=None
     )
     await state.set_state(TimeSelection.selecting_time)
+
+@dp.callback_query(F.data == "del_time_auto")
+async def call_del_time_auto(callback: CallbackQuery):
+    times = await get_times_by_user(callback.from_user.id)
+    await callback.message.answer(
+        text="Выберите какое время хотите удалить:",
+        reply_markup=markups.get_times_to_delete(times)
+    )
+    await callback.answer()
+
+@dp.callback_query(F.data.startswith("delete_time_by_index_"))
+async def call_delete_time_by_index(callback:CallbackQuery):
+    index_to_delete = int(callback.data.split("_")[-1])
+    await delete_time_by_index(callback.from_user.id, index_to_delete)
+    await callback.message.answer(
+        text="Время удалено"
+    )
+    await callback.answer()
+
 
 @dp.message(TimeSelection.selecting_time)
 async def write_selecting_time(message: Message, state: FSMContext):
@@ -115,7 +191,7 @@ async def call_selecting_today(callback:CallbackQuery, state: FSMContext):
         await write_auto_schedule({"value": time, "mode": "today"}, callback.from_user.id)
     await callback.answer()
     await callback.message.edit_text(
-        text="",
+        text="Время установлено!",
         reply_markup=None
     )
     await state.clear()
@@ -128,7 +204,7 @@ async def call_selecting_tomorrow(callback:CallbackQuery, state: FSMContext):
         await write_auto_schedule({"value": time, "mode": "tomorrow"}, callback.from_user.id)
     await callback.answer()
     await callback.message.edit_text(
-        text="",
+        text="Время установлено!",
         reply_markup=None
     )
     await state.clear()

@@ -8,3 +8,6 @@ class ClassSelection(StatesGroup):
 class TimeSelection(StatesGroup):
     selecting_time = State()
     selecting_tomorrow_or_today = State()
+
+class MakeReport(StatesGroup):
+    writing_report = State()

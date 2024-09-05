@@ -153,4 +153,10 @@ async def write_auto_schedule(data:dict, user_id):
     users[str(user_id)]['auto_schedule'] = auto_schedule
     await users_save(users)
 
-    
+async def delete_time_by_index(user_id, index_to_delete):
+    users = await users_get_or_create()
+    user = users[str(user_id)]
+    auto_schedule = user.get("auto_schedule", [])
+    if len(auto_schedule) >= index_to_delete+1:
+        del users[str(user_id)]['auto_schedule'][index_to_delete]
+    await users_save(users)

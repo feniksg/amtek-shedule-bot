@@ -7,15 +7,11 @@
         "update_notifications": true,
         "auto_schedule": [
             {
-                "value": "14:00",
-                "mode": "today"
+                "value": "15:00",
+                "mode": "tomorrow"
             },
             {
-                "value": "02:55",
-                "mode": "today"
-            },
-            {
-                "value": "08:20",
+                "value": "15:00",
                 "mode": "tomorrow"
             }
         ]

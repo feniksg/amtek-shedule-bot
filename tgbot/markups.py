@@ -80,10 +80,6 @@ def get_time_cud_markup():
             callback_data="add_time_auto"
         ),
         InlineKeyboardButton(
-            text="Изменить время",
-            callback_data="edit_time_auto"
-        ),
-        InlineKeyboardButton(
             text="Удалить время",
             callback_data="del_time_auto"
         ),
@@ -94,10 +90,6 @@ def get_time_cud_markup():
 def get_time_ud_markup():
     builder = InlineKeyboardBuilder()
     builder.add(*[
-        InlineKeyboardButton(
-            text="Изменить время",
-            callback_data="edit_time_auto"
-        ),
         InlineKeyboardButton(
             text="Удалить время",
             callback_data="del_time_auto"
@@ -118,5 +110,17 @@ def get_selecting_tomorrow_or_today():
             callback_data="selecting_tomorrow"
         )
     ])
+    builder.adjust(1)
+    return builder.as_markup()
+
+def get_times_to_delete(times):
+    builder = InlineKeyboardBuilder()
+    for time in times:
+        builder.add(
+            *[InlineKeyboardButton(
+                text=f'{time["value"]} ({"Текущий день" if time["mode"] == "today" else ""}{"Следующий день" if time["mode"] == "tomorrow" else ""})',
+                callback_data=f'delete_time_by_index_{times.index(time)}'
+            )]
+        )
     builder.adjust(1)
     return builder.as_markup()
