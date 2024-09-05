@@ -1,22 +1,14 @@
-from multiprocessing import Process
-from backend.celery_app import app
-from tgbot.bot import bot
-from settings import logger
+from tgbot.bot import dp, bot
+from settings import logger, ADMIN
+import asyncio
+from time import sleep
 
-
-def start_worker():
-    logger.info("Воркер запущен")
-    worker = app.Worker(loglevel='info')
-    worker.start()
-
-def start_beat():
-    logger.info("Беат запущен")
-    beat = app.Beat(loglevel='info')
-    beat.run()
-
-def start_bot():
+async def start_bot():
     logger.info("Бот запущен")
-    bot.infinity_polling()
+    print('Бот запущен')
+    await dp.start_polling(bot)
+
+
 
 if __name__ == '__main__':
-    ...
+    asyncio.run(start_bot())

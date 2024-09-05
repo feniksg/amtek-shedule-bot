@@ -1,4 +1,4 @@
-import requests, hashlib, os
+import requests, hashlib, os, json
 from PIL import Image, ImageDraw
 from os import path, mkdir, rmdir, remove, listdir
 from datetime import datetime, timedelta
@@ -170,6 +170,54 @@ def get_dates_this_week():
 
 #endregion
 
+
+def send_photo(token, chat_id, photo_path, caption=None):
+    url = f"https://api.telegram.org/bot{token}/sendPhoto"
+    files = {'photo': open(photo_path, 'rb')}
+    data = {'chat_id': chat_id}
+    if caption:
+        data['caption'] = caption
+    
+    response = requests.post(url, files=files, data=data)
+    return response.json()
+
+def send_message(token, chat_id, text):
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    data = {
+        'chat_id': chat_id,
+        'text': text
+    }
+    response = requests.post(url, data=data)
+    return response.json()
+
+def get_today_photo(user_id):
+    users = get_users()
+    user = users[str(user_id)]
+    cls = user.get('class', None)
+    if cls:
+        day = datetime.now().astimezone(settings.TZ_MOSCOW)
+        day = day.strftime("%d.%m.%Y")
+        if os.path.exists(f'files/imgs/croped_{day}/{day}_{cls}.png'):
+            return f'files/imgs/croped_{day}/{day}_{cls}.png'
+        return None
+    return None
+
+def get_tomorrow_photo(user_id):
+    users = get_users()
+    user = users[str(user_id)]
+    cls = user.get('class', None)
+    if cls:
+        day = datetime.now().astimezone(settings.TZ_MOSCOW) + timedelta(days=1)
+        day = day.strftime("%d.%m.%Y")
+        if os.path.exists(f'files/imgs/croped_{day}/{day}_{cls}.png'):
+            return f'files/imgs/croped_{day}/{day}_{cls}.png'
+        return None
+    return None
+
+def get_users():
+    with open('files/json/users.json', 'r', encoding='utf-8') as file:
+        users = json.load(file)
+    return users
 
 if __name__ == "__main__":
     ...

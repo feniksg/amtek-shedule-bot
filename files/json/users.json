@@ -1,0 +1,23 @@
+{
+    "370060213": {
+        "username": "feniksg1",
+        "first_name": "Савелий",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "14:00",
+                "mode": "today"
+            },
+            {
+                "value": "02:55",
+                "mode": "today"
+            },
+            {
+                "value": "08:20",
+                "mode": "tomorrow"
+            }
+        ]
+    }
+}
