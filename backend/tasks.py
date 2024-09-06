@@ -40,6 +40,10 @@ def check_for_changes():
                     if changed:
                         for cls in changed:
                             notificate_update.delay(cls, date)
+                    removeDir(f"files/imgs/croped_{date}")
+                    os.rename(f"files/imgs/croped_{date}updated", f"files/imgs/croped_{date}")
+                    os.remove(f'files/imgs/{date}.jpg')
+                    os.rename(f'files/imgs/temp.jpg', f'files/imgs/{date}.jpg')
 
 @shared_task
 def send_notification_task(user_id, text):
