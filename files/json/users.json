@@ -3,7 +3,7 @@
         "username": "feniksg1",
         "first_name": "Савелий",
         "last_name": null,
-        "class": "11А",
+        "class": "10А",
         "update_notifications": true,
         "auto_schedule": [
             {
@@ -15,5 +15,34 @@
                 "mode": "tomorrow"
             }
         ]
+    },
+    "2127702722": {
+        "username": "keepmeotb",
+        "first_name": "Дима",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "963046286": {
+        "username": "aktnb52",
+        "first_name": "Иванушка Дурачок",
+        "last_name": null,
+        "class": "10Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "20:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "907611891": {
+        "username": "runninthruthe7thwithmywoadies",
+        "first_name": "romeodablackrose",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
     }
 }

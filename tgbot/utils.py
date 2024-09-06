@@ -113,7 +113,8 @@ async def get_available_dates():
     res = []
     for dir in dirs:
         if dir.startswith("croped_"):
-            res.append(str(dir))
+            if not 'updated' in dir:
+                res.append(str(dir))
     for item in res:
         res[res.index(item)] = item.replace("croped_", "")
     res = sorted(res)
