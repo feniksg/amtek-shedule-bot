@@ -20,6 +20,10 @@ app.conf.update(
             'task': 'backend.tasks.check_auto_schedule',
             'schedule': crontab(minute='*'),  # Запуск каждую минуту
         },
+        'clean-old-day-at-1-00':{
+            'task': 'backend.tasks.clean_old_day',
+            'schedule': crontab(minute='0', hour='1'),
+        }
     }
 )
 

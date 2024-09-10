@@ -114,6 +114,11 @@ def check_auto_schedule():
         else:
             continue
 
-    
+@shared_task
+def clean_old_day():
+    yesterday = datetime.now().astimezone(settings.TZ_MOSCOW) - timedelta(days=1)
+    yesterday = yesterday.strftime("%d.%m.%Y")
+    removeDir(f"files/imgs/croped_{yesterday}")
+    os.remove(f'files/imgs/{yesterday}.jpg')
         
 
