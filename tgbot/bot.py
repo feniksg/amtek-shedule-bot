@@ -23,7 +23,8 @@ from .utils import (
     get_schedule_by_date,
     get_times_by_user,
     write_auto_schedule,
-    delete_time_by_index
+    delete_time_by_index,
+    get_stats
 )
 
 bot = Bot(settings.TOKEN)
@@ -44,6 +45,8 @@ async def cmd_menu(message:Message):
         parse_mode="HTML",
         reply_markup=markups.get_menu_markup()
     )
+
+#region Тех-поддержка
 
 @dp.message(Command("report"))
 async def cmd_report(message:Message, state: FSMContext):
@@ -66,6 +69,10 @@ async def writing_report_at_state(message: Message, state: FSMContext):
         chat_id=settings.ADMIN,
         text=f'Обращение от пользователя @{message.from_user.username}. Id пользователя {message.from_user.id}\n Обращение: "{message.text}"'
     )
+
+#endregion
+
+#region Автоматическая отправка командой
 
 @dp.callback_query(F.data == "set_time")
 async def call_set_time(callback: CallbackQuery):
@@ -135,16 +142,16 @@ async def cmd_set_time(message: Message):
 
 @dp.callback_query(F.data == "add_time_auto")
 async def call_add_time_auto(callback: CallbackQuery, state: FSMContext):
-    await callback.message.edit_text(
+    await callback.message.delete()
+    await callback.message.answer(
         text=messages.set_time,
-        reply_markup=None
     )
     await state.set_state(TimeSelection.selecting_time)
 
 @dp.callback_query(F.data == "del_time_auto")
 async def call_del_time_auto(callback: CallbackQuery):
     times = await get_times_by_user(callback.from_user.id)
-    await callback.message.answer(
+    await callback.message.edit_text(
         text="Выберите какое время хотите удалить:",
         reply_markup=markups.get_times_to_delete(times)
     )
@@ -154,6 +161,7 @@ async def call_del_time_auto(callback: CallbackQuery):
 async def call_delete_time_by_index(callback:CallbackQuery):
     index_to_delete = int(callback.data.split("_")[-1])
     await delete_time_by_index(callback.from_user.id, index_to_delete)
+    await callback.message.delete()
     await callback.message.answer(
         text="Время удалено"
     )
@@ -169,7 +177,7 @@ async def write_selecting_time(message: Message, state: FSMContext):
             await state.update_data(notification_time=message.text)
             await state.set_state(TimeSelection.selecting_tomorrow_or_today)
             await message.answer(
-                text=f"Уставновлено время {message.text}. \n Выберите какое расписание должно приходить в это время - Текущий или Следующий день",
+                text=f"Уставновлено время {message.text}. \nВыберите какое расписание должно приходить в это время - Текущий или Следующий день",
                 reply_markup=markups.get_selecting_tomorrow_or_today()
             )
         else:
@@ -190,9 +198,9 @@ async def call_selecting_today(callback:CallbackQuery, state: FSMContext):
     if time:
         await write_auto_schedule({"value": time, "mode": "today"}, callback.from_user.id)
     await callback.answer()
-    await callback.message.edit_text(
+    await callback.message.delete()
+    await callback.message.answer(
         text="Время установлено!",
-        reply_markup=None
     )
     await state.clear()
 
@@ -203,13 +211,13 @@ async def call_selecting_tomorrow(callback:CallbackQuery, state: FSMContext):
     if time:
         await write_auto_schedule({"value": time, "mode": "tomorrow"}, callback.from_user.id)
     await callback.answer()
-    await callback.message.edit_text(
+    await callback.message.delete()
+    await callback.message.answer(
         text="Время установлено!",
-        reply_markup=None
     )
     await state.clear()
 
-
+#endregion
 
 #region Расписание по дате
 
@@ -230,6 +238,24 @@ async def call_choose_date(callback: CallbackQuery):
 @dp.callback_query(F.data.startswith("get_day_schedule_"))
 async def call_get_day_schedule(callback: CallbackQuery):
     photo = await get_schedule_by_date(date=callback.data.split("_")[-1], user_id=callback.from_user.id)
+    date = callback.data.split("_")[-1]
+    date_obj = datetime.strptime(date, "%d.%m.%Y").astimezone(tz=settings.TZ_MOSCOW)
+    weekday = date_obj.weekday()
+    match weekday:
+        case 0:
+            weekday = "Понедельник"
+        case 1:
+            weekday = "Вторник"
+        case 2:
+            weekday = "Среда"
+        case 3:
+            weekday = "Четверг"
+        case 4:
+            weekday = "Пятница"
+        case 5:
+            weekday = "Суббота"
+        case 6:
+            weekday = "Воскресенье"
     if photo == "no-data":
         await callback.message.answer(
             text="Расписания пока нет 😓"
@@ -237,7 +263,8 @@ async def call_get_day_schedule(callback: CallbackQuery):
     elif photo:
         await bot.send_photo(
             callback.from_user.id,
-            photo=photo
+            photo=photo,
+            caption=f"Расписание {date} ({weekday})"
         )
     else:
         await callback.message.answer(
@@ -250,6 +277,24 @@ async def call_get_day_schedule(callback: CallbackQuery):
 @dp.message(Command("today"))
 async def cmd_today(message:Message):
     photo = await get_today_schedule(message.from_user.id)
+    date = datetime.now()
+    weekday = date.weekday()
+    date = date.strftime("%d.%m.%Y")
+    match weekday:
+        case 0:
+            weekday = "Понедельник"
+        case 1:
+            weekday = "Вторник"
+        case 2:
+            weekday = "Среда"
+        case 3:
+            weekday = "Четверг"
+        case 4:
+            weekday = "Пятница"
+        case 5:
+            weekday = "Суббота"
+        case 6:
+            weekday = "Воскресенье"
     if photo == "sunday":
         await message.answer(
             text="Сегодня воскресенье, отдохни 😉"
@@ -261,7 +306,8 @@ async def cmd_today(message:Message):
     elif photo:
         await bot.send_photo(
             chat_id=message.from_user.id,
-            photo=photo
+            photo=photo,
+            caption=f"Расписание на сегодня. {date} ({weekday})"
         )
     else:
         await message.answer(
@@ -271,6 +317,24 @@ async def cmd_today(message:Message):
 @dp.message(Command("tomorrow"))
 async def cmd_tomorrow(message:Message):
     photo = await get_tomorrow_schedule(message.from_user.id)
+    date = datetime.now() + timedelta(days=1)
+    weekday = date.weekday()
+    date = date.strftime("%d.%m.%Y")
+    match weekday:
+        case 0:
+            weekday = "Понедельник"
+        case 1:
+            weekday = "Вторник"
+        case 2:
+            weekday = "Среда"
+        case 3:
+            weekday = "Четверг"
+        case 4:
+            weekday = "Пятница"
+        case 5:
+            weekday = "Суббота"
+        case 6:
+            weekday = "Воскресенье"
     if photo == "sunday":
         await message.answer(
             text="Завтра воскресенье, отдохни 😉"
@@ -282,7 +346,8 @@ async def cmd_tomorrow(message:Message):
     elif photo:
         await bot.send_photo(
             chat_id=message.from_user.id,
-            photo=photo
+            photo=photo,
+            caption=f"Расписание на завтра. {date} ({weekday})"
         )
     else:
         await message.answer(
@@ -291,7 +356,7 @@ async def cmd_tomorrow(message:Message):
 
 #endregion
 
-#region Автоматическая отправка расписания
+#region Уведомления
 
 @dp.callback_query(F.data == "toggle_notifications")
 async def call_toggle_notifications(callback: CallbackQuery):
@@ -353,9 +418,9 @@ async def call_set_grade(callback: CallbackQuery, state: FSMContext):
 @dp.callback_query(F.data.startswith('set_letter'))
 async def call_set_letter(callback: CallbackQuery, state: FSMContext):
     await state.update_data(letter=callback.data.split("_")[-1])
-    await callback.message.edit_text(
+    await callback.message.delete()
+    await callback.message.answer(
         text="Класс сохранён!",
-        reply_markup=None
     )
     data = await state.get_data()
     await set_class(callback.from_user.id, f"{data['grade']}{data['letter']}")
@@ -381,66 +446,22 @@ async def call_back_letter(callback: CallbackQuery, state: FSMContext):
 
 #endregion 
 
+#region Админка
 
-async def send_timetable(user_id, mode):
-    if mode == "today":
-        photo = await get_today_schedule(user_id)
-        date = datetime.now()
-        weekday = date.weekday()
-        date = date.strftime("%d.%m.%Y")
-        match weekday:
-            case 0:
-                weekday = "Понедельник"
-            case 1:
-                weekday = "Вторник"
-            case 2:
-                weekday = "Среда"
-            case 3:
-                weekday = "Четверг"
-            case 4:
-                weekday = "Пятница"
-            case 5:
-                weekday = "Суббота"
-            case 6:
-                weekday = "Воскресенье"
-        if photo:
-            await bot.send_photo(
-                chat_id=user_id,
-                photo=photo,
-                caption=f"Расписание на сегодня. {date} ({weekday})"
-            )
-        return
-    elif mode == "tomorrow":
-        photo = await get_tomorrow_schedule(user_id)
-        date = datetime.now() + timedelta(days=1)
-        weekday = date.weekday()
-        date = date.strftime("%d.%m.%Y")
-        match weekday:
-            case 0:
-                weekday = "Понедельник"
-            case 1:
-                weekday = "Вторник"
-            case 2:
-                weekday = "Среда"
-            case 3:
-                weekday = "Четверг"
-            case 4:
-                weekday = "Пятница"
-            case 5:
-                weekday = "Суббота"
-            case 6:
-                weekday = "Воскресенье"
-        if photo:
-            await bot.send_photo(
-                chat_id=user_id,
-                photo=photo,
-                caption=f"Расписание на завтра. {date} ({weekday})"
-            )
-    await bot.session.close()
-
-async def send_notification(user_id, text):
-    await bot.send_message(
-        chat_id=user_id,
-        text=text
-    )
-    await bot.session.close()
+@dp.message(Command("stats"))
+async def cmd_stats(message: Message):
+    if str(message.from_user.id) == settings.ADMIN:
+        data = await get_stats()
+        mess_1 = f"Всего пользователей: {data['count']}\nУведомления включены: {data['notification']} - {data['persent']}%"
+        mess_2 = ""
+        for cls, count in data['class_count'].items():
+            mess_2+=f"{cls}: {count}\n"
+        mess_3 = ""
+        for tpl in data['users_list']:
+            mess_3+=f"@{tpl[0]} - {tpl[1]}\n"
+        await message.answer(mess_1)
+        await message.answer(mess_2)
+        await message.answer(mess_3)
+    else:
+        await message.answer("Но но но мистер фиш")
+    return

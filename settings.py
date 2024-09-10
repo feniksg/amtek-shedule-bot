@@ -5,7 +5,11 @@ from dotenv import load_dotenv
 from datetime import timezone, timedelta
 load_dotenv()
 
-TOKEN = os.getenv("TOKEN")
+DEBUG = os.getenv("DEBUG")=="TRUE"
+if DEBUG:
+    TOKEN = os.getenv("DEV_TOKEN")
+else:
+    TOKEN = os.getenv("TOKEN")
 ADMIN = os.getenv("ADMIN")
 TZ_MOSCOW = timezone(timedelta(hours=3))
 URL = 'https://xn--d1auh.xn----8sbnlgibn8c8a2f.xn--p1ai/shedule/{}.png'

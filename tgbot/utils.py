@@ -17,7 +17,12 @@ def escape_markdown(text: str) -> str:
         text = text.replace(char, f'\\{char}')
     return text
 
+#region GET USERS
+
 async def users_get_or_create() -> dict:
+    """
+    Возвращает или создаёт словарь с пользователями. ID пользователя - ключ
+    """
     if not await check_file(USERS_PATH):
         async with lock:
             async with aiofiles.open(USERS_PATH, mode='w+', encoding="utf-8") as file:
@@ -28,10 +33,18 @@ async def users_get_or_create() -> dict:
             content = await file.read()
             return json.loads(content)
 
+#region File
+
 async def check_file(filename):
+    """
+    Ассинхронная проверка - есть ли файл
+    """
     return await aiofiles.os.path.exists(filename)
 
 async def check_user(id):
+    """
+    Проверяет есть ли пользователь в системе
+    """
     users = await users_get_or_create()
     if str(id) in users.keys():
         return True
@@ -39,10 +52,12 @@ async def check_user(id):
         return False
     
 async def users_save(data):
+    """
+    Сохраняет словарь с пользователями
+    """
     async with lock:
         async with aiofiles.open(USERS_PATH, mode="w+", encoding="utf-8") as file:
             await file.write(json.dumps(data, ensure_ascii=False, indent=4))
-
 
 async def add_user(message:Message):
     users = await users_get_or_create()
@@ -96,7 +111,6 @@ async def get_tomorrow_schedule(user_id):
         return 'no-data'
     return None
 
-
 async def get_schedule_by_date(date, user_id):
     users = await users_get_or_create()
     user = users[str(user_id)]
@@ -106,7 +120,6 @@ async def get_schedule_by_date(date, user_id):
             return FSInputFile(f'files/imgs/croped_{date}/{date}_{cls}.png')
         return 'no-data'
     return None
-
 
 async def get_available_dates():
     dirs = await aiofiles.os.listdir('files/imgs/')
@@ -161,3 +174,39 @@ async def delete_time_by_index(user_id, index_to_delete):
     if len(auto_schedule) >= index_to_delete+1:
         del users[str(user_id)]['auto_schedule'][index_to_delete]
     await users_save(users)
+
+async def get_stats():
+    users = await users_get_or_create()
+    users_count = len(users.keys())
+    notifications_count = 0
+    for key in users.keys():
+        if users[key]['update_notifications']:
+            notifications_count+=1
+    
+    class_count = {}
+
+    users_list = []
+
+    for user_id, user_data in users.items():
+        class_name = user_data.get("class")
+        username = user_data.get("username")
+        first_name = user_data.get("first_name")
+        users_list.append((username, first_name))
+        if class_name:
+            # Проверяем, подходит ли класс под нужный диапазон (5-11 классы, А-Г буквы)
+            grade = class_name[:-1]
+            letter = class_name[-1]
+            if grade.isdigit() and 5 <= int(grade) <= 11 and letter in "АБВГ":
+                if class_name in class_count:
+                    class_count[class_name] += 1
+                else:
+                    class_count[class_name] = 1
+
+    
+    return {
+        "count": users_count,
+        "notification": notifications_count,
+        "persent": round(notifications_count/users_count*100, 2),
+        "class_count": class_count,
+        "users_list": users_list
+    }
