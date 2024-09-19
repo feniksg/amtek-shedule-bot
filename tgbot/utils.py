@@ -202,11 +202,15 @@ async def get_stats():
                 else:
                     class_count[class_name] = 1
 
-    
+    sorted_class_count = dict(sorted(class_count.items(), key=lambda item: item[1], reverse=True))
     return {
         "count": users_count,
         "notification": notifications_count,
         "persent": round(notifications_count/users_count*100, 2),
-        "class_count": class_count,
+        "class_count": sorted_class_count,
         "users_list": users_list
     }
+
+async def get_users_for_broadcast():
+    users = await users_get_or_create()
+    return list(users.keys())

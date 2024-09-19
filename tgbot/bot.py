@@ -1,5 +1,6 @@
 from aiogram import Bot, Dispatcher, F
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, ContentType, InputMediaPhoto
+from aiogram.utils.media_group import MediaGroupBuilder
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
 
@@ -10,7 +11,8 @@ from . import messages, markups
 from .stategroups import (
     ClassSelection,
     TimeSelection,
-    MakeReport
+    MakeReport,
+    Broadcast
 )
 
 from .utils import (
@@ -24,7 +26,8 @@ from .utils import (
     get_times_by_user,
     write_auto_schedule,
     delete_time_by_index,
-    get_stats
+    get_stats,
+    get_users_for_broadcast
 )
 
 bot = Bot(settings.TOKEN)
@@ -44,6 +47,13 @@ async def cmd_menu(message:Message):
         text=messages.message_menu,
         parse_mode="HTML",
         reply_markup=markups.get_menu_markup()
+    )
+
+@dp.message(Command("help"))
+async def cmd_help(message:Message):
+    await message.answer(
+        text=messages.message_help,
+        parse_mode="HTML",
     )
 
 #region Тех-поддержка
@@ -69,6 +79,9 @@ async def writing_report_at_state(message: Message, state: FSMContext):
         chat_id=settings.ADMIN,
         text=f'Обращение от пользователя @{message.from_user.username}. Id пользователя {message.from_user.id}\n Обращение: "{message.text}"'
     )
+
+
+    
 
 #endregion
 
@@ -221,6 +234,20 @@ async def call_selecting_tomorrow(callback:CallbackQuery, state: FSMContext):
 
 #region Расписание по дате
 
+@dp.message(Command("choose_date"))
+async def cmd_choose_date(message:Message):
+    mk = await markups.get_available_dates_markup()
+    if mk=="no-data":
+        await message.answer(
+            text="Сейчас нет доступного расписания"
+        )
+        return
+    await message.answer(
+        text="<b>Выберите дату</b>:",
+        parse_mode="HTML",
+        reply_markup=mk
+    )
+
 @dp.callback_query(F.data == "choose_date")
 async def call_choose_date(callback: CallbackQuery):
     mk = await markups.get_available_dates_markup()
@@ -266,6 +293,7 @@ async def call_get_day_schedule(callback: CallbackQuery):
             photo=photo,
             caption=f"Расписание {date} ({weekday})"
         )
+        await callback.answer()
     else:
         await callback.message.answer(
             text="У вас не выбран класс."
@@ -456,12 +484,70 @@ async def cmd_stats(message: Message):
         mess_2 = ""
         for cls, count in data['class_count'].items():
             mess_2+=f"{cls}: {count}\n"
-        mess_3 = ""
-        for tpl in data['users_list']:
-            mess_3+=f"@{tpl[0]} - {tpl[1]}\n"
+
         await message.answer(mess_1)
         await message.answer(mess_2)
-        await message.answer(mess_3)
     else:
         await message.answer("Но но но мистер фиш")
     return
+
+@dp.message(Command("list"))
+async def cmd_list(message: Message):
+    if str(message.from_user.id) == settings.ADMIN:
+        data = await get_stats()
+        n = 50
+        devided_lists = [data['users_list'][i:i+n] for i in range(0, len(data['users_list']), n)]
+        
+        for l in devided_lists:
+            temp = ""
+            for tpl in l:
+                temp+=f"@{tpl[0]} - {tpl[1]}\n"
+            await message.answer(temp)
+    else:
+        await message.answer("Но но но мистер фиш")
+    return
+
+@dp.message(Command("broadcast"))
+async def cmd_broadcast(message:Message, state:FSMContext):
+    if str(message.from_user.id) == settings.ADMIN:
+        await message.answer("Введите сообщение или загрузите изображение (одно) или видед (одно) для рассылки, или введите /cancel для отмены.")
+        await state.set_state(Broadcast.waiting_for_message)
+    else:
+        await message.answer("Ты знаешь много лишнего 👀")
+        
+@dp.message(Broadcast.waiting_for_message,Command("cancel"))
+async def cancel_broadcast(message: Message, state:FSMContext):
+    await state.clear()
+    await message.answer("Рассылка отменена.")
+
+@dp.message(Broadcast.waiting_for_message,)
+async def process_broadcast(message:Message, state:FSMContext):
+    users = await get_users_for_broadcast()
+    if message.content_type == ContentType.TEXT:
+        broadcast_message = message.text
+        for user_id in users:
+            try:
+                await bot.send_message(chat_id=user_id, text=broadcast_message, parse_mode="HTML")
+            except Exception as e:
+                print(f"Не удалось отправить сообщение пользователю {user_id}: {e}")
+    elif message.content_type == ContentType.PHOTO:
+        photo = message.photo
+        caption = message.caption or ""
+        for user_id in users:
+            try:
+                await bot.send_photo(chat_id=user_id, photo=photo[-1].file_id, caption=caption)
+            except Exception as e:
+                print(f"Не удалось отправить сообщение пользователю {user_id}: {e}")
+    elif message.content_type == ContentType.VIDEO:
+        video = message.video
+        caption = message.caption or ""
+        for user_id in users:
+            try:
+                await bot.send_video(chat_id=user_id, video=video.file_id, caption=caption)
+            except Exception as e:
+                print(f"Не удалось отправить сообщение пользователю {user_id}: {e}")
+
+    await state.clear()
+    await message.answer("Рассылка завершена.")
+   
+    

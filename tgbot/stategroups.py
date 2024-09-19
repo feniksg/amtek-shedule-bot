@@ -11,3 +11,6 @@ class TimeSelection(StatesGroup):
 
 class MakeReport(StatesGroup):
     writing_report = State()
+
+class Broadcast(StatesGroup):
+    waiting_for_message = State()
