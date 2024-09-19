@@ -5,16 +5,7 @@
         "last_name": null,
         "class": "10А",
         "update_notifications": true,
-        "auto_schedule": [
-            {
-                "value": "15:00",
-                "mode": "tomorrow"
-            },
-            {
-                "value": "15:00",
-                "mode": "today"
-            }
-        ]
+        "auto_schedule": []
     },
     "2127702722": {
         "username": "keepmeotb",
@@ -28,12 +19,16 @@
         "username": "aktnb52",
         "first_name": "Иванушка Дурачок",
         "last_name": null,
-        "class": "10В",
+        "class": "10Б",
         "update_notifications": false,
         "auto_schedule": [
             {
                 "value": "20:00",
                 "mode": "today"
+            },
+            {
+                "value": "10:00",
+                "mode": "tomorrow"
             }
         ]
     },
@@ -65,7 +60,7 @@
         "username": "marrkk69",
         "first_name": "Марк",
         "last_name": null,
-        "class": "7А",
+        "class": "7Б",
         "update_notifications": false,
         "auto_schedule": []
     },
@@ -138,10 +133,14 @@
         "first_name": "анечка",
         "last_name": null,
         "class": "9В",
-        "update_notifications": false,
+        "update_notifications": true,
         "auto_schedule": [
             {
                 "value": "21:30",
+                "mode": "tomorrow"
+            },
+            {
+                "value": "10:00",
                 "mode": "tomorrow"
             }
         ]
@@ -299,7 +298,12 @@
         "last_name": null,
         "class": "10Г",
         "update_notifications": false,
-        "auto_schedule": []
+        "auto_schedule": [
+            {
+                "value": "13:00",
+                "mode": "tomorrow"
+            }
+        ]
     },
     "1975456671": {
         "username": "m_bbyf",
@@ -335,6 +339,10 @@
             {
                 "value": "14:00",
                 "mode": "tomorrow"
+            },
+            {
+                "value": "06:30",
+                "mode": "today"
             }
         ]
     },
@@ -464,7 +472,7 @@
         "username": "dusssh",
         "first_name": "дефчонка",
         "last_name": null,
-        "class": "10Г",
+        "class": "10А",
         "update_notifications": false,
         "auto_schedule": []
     },
@@ -512,7 +520,7 @@
         "username": "mbmary",
         "first_name": "маша ♱",
         "last_name": null,
-        "class": "10Г",
+        "class": "7В",
         "update_notifications": false,
         "auto_schedule": []
     },
@@ -524,8 +532,12 @@
         "update_notifications": false,
         "auto_schedule": [
             {
-                "value": "14:00",
+                "value": "11:00",
                 "mode": "tomorrow"
+            },
+            {
+                "value": "08:00",
+                "mode": "today"
             }
         ]
     },
@@ -541,7 +553,7 @@
         "username": "brigadeofdeath",
         "first_name": "невер6q",
         "last_name": null,
-        "class": "9А",
+        "class": "8В",
         "update_notifications": false,
         "auto_schedule": []
     },
@@ -601,7 +613,12 @@
         "last_name": null,
         "class": "8В",
         "update_notifications": false,
-        "auto_schedule": []
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            }
+        ]
     },
     "1263250148": {
         "username": "werewqxx",
@@ -656,8 +673,13 @@
         "first_name": "darina",
         "last_name": null,
         "class": "11Б",
-        "update_notifications": false,
-        "auto_schedule": []
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "17:00",
+                "mode": "tomorrow"
+            }
+        ]
     },
     "5447478983": {
         "username": "anyakovvv",
@@ -665,7 +687,12 @@
         "last_name": null,
         "class": "8В",
         "update_notifications": false,
-        "auto_schedule": []
+        "auto_schedule": [
+            {
+                "value": "17:00",
+                "mode": "tomorrow"
+            }
+        ]
     },
     "826007626": {
         "username": "imsashh",
@@ -770,10 +797,10 @@
         "first_name": "⚝ (!)",
         "last_name": null,
         "class": "8Г",
-        "update_notifications": true,
+        "update_notifications": false,
         "auto_schedule": [
             {
-                "value": "16:11",
+                "value": "14:03",
                 "mode": "tomorrow"
             }
         ]
@@ -806,7 +833,7 @@
         "username": "katushkart",
         "first_name": "dakatя",
         "last_name": null,
-        "class": null,
+        "class": "8А",
         "update_notifications": false,
         "auto_schedule": []
     },
@@ -832,7 +859,12 @@
         "last_name": null,
         "class": "9Г",
         "update_notifications": true,
-        "auto_schedule": []
+        "auto_schedule": [
+            {
+                "value": "07:45",
+                "mode": "tomorrow"
+            }
+        ]
     },
     "1019253688": {
         "username": "ksmirnov397",
@@ -848,7 +880,12 @@
         "last_name": null,
         "class": "8В",
         "update_notifications": false,
-        "auto_schedule": []
+        "auto_schedule": [
+            {
+                "value": "07:00",
+                "mode": "today"
+            }
+        ]
     },
     "1841146504": {
         "username": "trueGOATunderGOD",
@@ -913,7 +950,7 @@
         "first_name": "liza",
         "last_name": null,
         "class": "11Б",
-        "update_notifications": false,
+        "update_notifications": true,
         "auto_schedule": []
     },
     "1245606572": {
@@ -976,7 +1013,7 @@
         "username": "CDExxxtrim",
         "first_name": "GloGirl owner",
         "last_name": null,
-        "class": null,
+        "class": "10Г",
         "update_notifications": false,
         "auto_schedule": []
     },
@@ -992,7 +1029,7 @@
         "username": "trapmedalz",
         "first_name": "syoma boeing",
         "last_name": null,
-        "class": null,
+        "class": "10Г",
         "update_notifications": false,
         "auto_schedule": []
     },
@@ -1034,13 +1071,18 @@
         "last_name": null,
         "class": "11Б",
         "update_notifications": false,
-        "auto_schedule": []
+        "auto_schedule": [
+            {
+                "value": "12:00",
+                "mode": "tomorrow"
+            }
+        ]
     },
     "5230744389": {
         "username": null,
         "first_name": "Polina",
         "last_name": null,
-        "class": null,
+        "class": "11Б",
         "update_notifications": false,
         "auto_schedule": []
     },
@@ -1082,7 +1124,12 @@
         "last_name": null,
         "class": "11Б",
         "update_notifications": false,
-        "auto_schedule": []
+        "auto_schedule": [
+            {
+                "value": "06:50",
+                "mode": "tomorrow"
+            }
+        ]
     },
     "800320505": {
         "username": "madyvzfkk",
@@ -1090,7 +1137,12 @@
         "last_name": null,
         "class": "11Б",
         "update_notifications": false,
-        "auto_schedule": []
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            }
+        ]
     },
     "5691468165": {
         "username": null,
@@ -1105,7 +1157,7 @@
         "first_name": "милаша",
         "last_name": null,
         "class": "6В",
-        "update_notifications": false,
+        "update_notifications": true,
         "auto_schedule": []
     },
     "5568716268": {
@@ -1113,6 +1165,1734 @@
         "first_name": "кариша",
         "last_name": null,
         "class": "6В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "814806756": {
+        "username": "skvovchik",
+        "first_name": "Володя",
+        "last_name": "⛩️",
+        "class": "11Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1627271928": {
+        "username": "lawwarynolol",
+        "first_name": "варушкалол🥚",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1794764846": {
+        "username": "aliskasosisska",
+        "first_name": "алиска",
+        "last_name": null,
+        "class": "11Г",
+        "update_notifications": true,
+        "auto_schedule": []
+    },
+    "1289118201": {
+        "username": "diiiana_h",
+        "first_name": "legenda",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5243432270": {
+        "username": "DobryDead52",
+        "first_name": "Илья",
+        "last_name": "Подбельский",
+        "class": "7В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1062656375": {
+        "username": "sa7vhs",
+        "first_name": "FOIJ",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5013624111": {
+        "username": null,
+        "first_name": "гоша",
+        "last_name": null,
+        "class": "9В",
+        "update_notifications": true,
+        "auto_schedule": []
+    },
+    "5558896878": {
+        "username": "ilqqxvk",
+        "first_name": "ㅤㅤㅤㅤ🥀",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1279089836": {
+        "username": "nikaalis",
+        "first_name": "ника",
+        "last_name": null,
+        "class": "9В",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "12:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1454504054": {
+        "username": "sofyaaa_orlova",
+        "first_name": "сонечка",
+        "last_name": null,
+        "class": "9Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1889883991": {
+        "username": "drrandylet",
+        "first_name": "ритат",
+        "last_name": null,
+        "class": "7В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1398446951": {
+        "username": "yrirtj",
+        "first_name": "capo",
+        "last_name": null,
+        "class": "10В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1536693568": {
+        "username": "mashhhhhk",
+        "first_name": "маша!!",
+        "last_name": null,
+        "class": "10Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "15:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5845762755": {
+        "username": "ilove_4522",
+        "first_name": "машунька୨ৎ",
+        "last_name": null,
+        "class": "6Б",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "17:30",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5024386780": {
+        "username": "qwukly",
+        "first_name": "биологический вид",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "17:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5263210678": {
+        "username": "I_love_palochek",
+        "first_name": "Ксюша🦋",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1417478672": {
+        "username": "kxlcodllx",
+        "first_name": "ника лове",
+        "last_name": null,
+        "class": "9Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1754660337": {
+        "username": "Viryana1226",
+        "first_name": "Бумбумбакудан1226#люблюланудельрейирайдос",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "08:20",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1622904187": {
+        "username": "Midwxc",
+        "first_name": "||/\\aGg_DpaGg_D|/|/\\Lerp🦦",
+        "last_name": null,
+        "class": "9В",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5198152917": {
+        "username": "elizavett_m",
+        "first_name": "elizaveta",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "981591600": {
+        "username": "dariiiiiiaaaaaaaa",
+        "first_name": "dasha",
+        "last_name": null,
+        "class": "11В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "989205501": {
+        "username": "sashaaalie",
+        "first_name": "sasha",
+        "last_name": null,
+        "class": "9Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1980041172": {
+        "username": "dariamikhailovnal",
+        "first_name": "даша💋",
+        "last_name": null,
+        "class": "8Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1527016992": {
+        "username": "laswqqqq",
+        "first_name": "чайник",
+        "last_name": null,
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "13:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5174897652": {
+        "username": "evangelishas",
+        "first_name": "evangelisha",
+        "last_name": null,
+        "class": "11Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "10:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "6328128125": {
+        "username": "uliana5214",
+        "first_name": "уля",
+        "last_name": "🤘🤘🤘",
+        "class": "7Г",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "07:30",
+                "mode": "today"
+            },
+            {
+                "value": "14:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5294927271": {
+        "username": "Myliny0ff",
+        "first_name": "Милка",
+        "last_name": "🧸🎬",
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "06:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "7480334269": {
+        "username": "lerchok07",
+        "first_name": "лерочка",
+        "last_name": null,
+        "class": "10Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "10:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1891325916": {
+        "username": "akimchik_8",
+        "first_name": "Акимок🏑",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5315022694": {
+        "username": "ImKsushik",
+        "first_name": "Ксю:)",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1385497415": {
+        "username": "romqni",
+        "first_name": "миссэвн(!)",
+        "last_name": null,
+        "class": "10Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "2004399482": {
+        "username": "Ivan_89765",
+        "first_name": "Петрушка",
+        "last_name": "❤️‍🔥🍌❤️‍🔥",
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "15:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5233667269": {
+        "username": "Uvarova06",
+        "first_name": ",",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5354608347": {
+        "username": "UlyashaRo",
+        "first_name": "Уляша",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5161162626": {
+        "username": "lerusya52yoy",
+        "first_name": "Леруська💋",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "15:30",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1780732688": {
+        "username": "DieMousse",
+        "first_name": "Die",
+        "last_name": "Mousse",
+        "class": "8Б",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "6718101393": {
+        "username": "Abvgdaska",
+        "first_name": "Дашенька",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1309726905": {
+        "username": "qweriiqp",
+        "first_name": "🍩",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6271744532": {
+        "username": "ritkarrrrrrr",
+        "first_name": "ритк",
+        "last_name": null,
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5172316562": {
+        "username": "taskaa23",
+        "first_name": "Таськаа💘",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5745680409": {
+        "username": "Iandreyka",
+        "first_name": "ΔƞδʀειΚα",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "07:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "5180540006": {
+        "username": "k1tKat12",
+        "first_name": "𝕂𝔸𝕋ℝ𝕀ℕℕ",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "14:30",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5282081216": {
+        "username": "otsvssl",
+        "first_name": "стейшааа",
+        "last_name": null,
+        "class": "10В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "876143012": {
+        "username": "wjkskdzl",
+        "first_name": "wjkskdzl",
+        "last_name": null,
+        "class": "10Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6525126369": {
+        "username": "Moonizss",
+        "first_name": "𝓜𝓸𝓸𝓷𝓲𝔃𝓼🍂",
+        "last_name": null,
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "15:30",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5201185287": {
+        "username": "Evix_fr",
+        "first_name": "𝐸𝓋𝒾𝓍_𝒻𝓇 🎧",
+        "last_name": null,
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "450919685": {
+        "username": "DSSGF",
+        "first_name": "Ff",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6681565858": {
+        "username": "Stehkaa",
+        "first_name": "Стеша",
+        "last_name": null,
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "14:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "2102867691": {
+        "username": "businka_1505",
+        "first_name": "*<^Anny^>*",
+        "last_name": null,
+        "class": "8Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "07:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "1217609503": {
+        "username": "taslkaa",
+        "first_name": "Tass🤍🩵",
+        "last_name": null,
+        "class": "8А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1038114372": {
+        "username": "chernnichka",
+        "first_name": "диана",
+        "last_name": null,
+        "class": "10Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6319780910": {
+        "username": null,
+        "first_name": "sonya🕊️",
+        "last_name": null,
+        "class": "6Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "20:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5777942042": {
+        "username": "polishhaass",
+        "first_name": "polishas",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6410089305": {
+        "username": "antikbroyy",
+        "first_name": "антик бро",
+        "last_name": null,
+        "class": "10В",
+        "update_notifications": true,
+        "auto_schedule": []
+    },
+    "1407904938": {
+        "username": "kuti_me",
+        "first_name": "AnBy",
+        "last_name": null,
+        "class": "8Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "945843058": {
+        "username": "kolbasa_k",
+        "first_name": "kolbasa",
+        "last_name": null,
+        "class": "10Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "12:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1904964208": {
+        "username": "korelovadupp",
+        "first_name": "никуля",
+        "last_name": null,
+        "class": "8В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1157068214": {
+        "username": "semkaerm",
+        "first_name": "Сёма",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6719026180": {
+        "username": "moaengeneloverrr",
+        "first_name": "miumiu",
+        "last_name": null,
+        "class": "9Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "521649586": {
+        "username": "cuuurt68",
+        "first_name": "Сэм👾",
+        "last_name": null,
+        "class": "11Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1491824946": {
+        "username": "xddxxdxxd",
+        "first_name": "еV",
+        "last_name": null,
+        "class": "10В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5371151902": {
+        "username": "Valeri_mat09",
+        "first_name": "Lerkaaa",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6611913847": {
+        "username": null,
+        "first_name": "Evgen",
+        "last_name": "Gusev",
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5226167678": {
+        "username": "tankist_perf",
+        "first_name": "Влаdick",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1424107215": {
+        "username": "vikssswqs",
+        "first_name": "viksswqs",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "15:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "6044698160": {
+        "username": null,
+        "first_name": "Саня",
+        "last_name": null,
+        "class": "10Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1566778652": {
+        "username": "fgfgffggfffggg",
+        "first_name": "fg",
+        "last_name": "🦄",
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "610064878": {
+        "username": null,
+        "first_name": "Даня",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5664545599": {
+        "username": "Valya251009",
+        "first_name": "Lux in tenebris",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "12:30",
+                "mode": "tomorrow"
+            },
+            {
+                "value": "07:40",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1050264510": {
+        "username": "mj640",
+        "first_name": "Xenia",
+        "last_name": null,
+        "class": "11Б",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "09:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "1891039453": {
+        "username": "kittigas",
+        "first_name": "Полина",
+        "last_name": null,
+        "class": "9Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1506058294": {
+        "username": "borovchenkovaa",
+        "first_name": "Пелагея",
+        "last_name": "Боровчёнкова ️",
+        "class": "9Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1854717041": {
+        "username": "sstrex",
+        "first_name": "ᴍʀʏ ɢʜ.",
+        "last_name": "⛧",
+        "class": "9Г",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "16:20",
+                "mode": "tomorrow"
+            },
+            {
+                "value": "07:20",
+                "mode": "today"
+            }
+        ]
+    },
+    "2049120957": {
+        "username": "Victoriaplayer17",
+        "first_name": "Artem",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1021951718": {
+        "username": "katyshaaa_b",
+        "first_name": "Катюша",
+        "last_name": null,
+        "class": "11В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1376800193": {
+        "username": "alll_aa",
+        "first_name": "alxshe//gssfa",
+        "last_name": null,
+        "class": "9В",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1041110717": {
+        "username": "toxic_kisss",
+        "first_name": "toxic kiss",
+        "last_name": null,
+        "class": "11Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1677986644": {
+        "username": "manzheley",
+        "first_name": "manzheley",
+        "last_name": null,
+        "class": "9Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1298331996": {
+        "username": "nellopi",
+        "first_name": "nell",
+        "last_name": null,
+        "class": "10А",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "07:00",
+                "mode": "today"
+            },
+            {
+                "value": "15:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1316526537": {
+        "username": "bkis_14tina",
+        "first_name": "кристюша",
+        "last_name": null,
+        "class": "11В",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "868416715": {
+        "username": "prosto_dasssha",
+        "first_name": "просто даша",
+        "last_name": null,
+        "class": "11В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5420584932": {
+        "username": "rtuusyy",
+        "first_name": "te amo",
+        "last_name": null,
+        "class": "10А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5054155123": {
+        "username": "dasssshaaaaa",
+        "first_name": "dasha",
+        "last_name": null,
+        "class": "11Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "09:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "6346498181": {
+        "username": "hyu1ikl",
+        "first_name": "Zhaklin",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": true,
+        "auto_schedule": []
+    },
+    "5764341205": {
+        "username": "ne_0ok",
+        "first_name": "ХАХАХАХАХ",
+        "last_name": null,
+        "class": "8Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "17:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "960281624": {
+        "username": "vakarashisagoddess",
+        "first_name": "кристина вакараш",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1389848817": {
+        "username": "Snowexer",
+        "first_name": "Snowexer",
+        "last_name": null,
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5223656796": {
+        "username": "Gggggggggggggttttttttttt",
+        "first_name": "Tatyana",
+        "last_name": null,
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1234084250": {
+        "username": "evgeshka_swag",
+        "first_name": "⛓️𝔼𝕧𝕘𝕖𝕤𝕙𝕒🌺",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": true,
+        "auto_schedule": []
+    },
+    "1257244449": {
+        "username": "mariyoq",
+        "first_name": "марийоu🪼🐙",
+        "last_name": null,
+        "class": "8Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1489925252": {
+        "username": "zxcssnake",
+        "first_name": "Лёня",
+        "last_name": null,
+        "class": "10Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "00:01",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "996969490": {
+        "username": null,
+        "first_name": ".",
+        "last_name": null,
+        "class": "9А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5131152457": {
+        "username": "xeeegr",
+        "first_name": "егор",
+        "last_name": null,
+        "class": "10В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6596926827": {
+        "username": "monicmy222",
+        "first_name": "ммм",
+        "last_name": null,
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "12:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5874163066": {
+        "username": "lox_po_lifa",
+        "first_name": "Goto",
+        "last_name": null,
+        "class": "8А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1402619334": {
+        "username": null,
+        "first_name": "Юлия",
+        "last_name": "Юлия",
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6380337115": {
+        "username": "massinoran",
+        "first_name": "massimo",
+        "last_name": "noran🐾",
+        "class": "10В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1175255106": {
+        "username": null,
+        "first_name": "Тимоха",
+        "last_name": null,
+        "class": "9Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1782227089": {
+        "username": "Lizakonnik",
+        "first_name": "The X Factor",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5180402343": {
+        "username": "rinavolume",
+        "first_name": "ᅠ",
+        "last_name": "ᅠ",
+        "class": "10В",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "17:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "631916396": {
+        "username": "maksimks_sss",
+        "first_name": "максимкс",
+        "last_name": null,
+        "class": "10Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "2073357189": {
+        "username": "sashkuss",
+        "first_name": "сашка",
+        "last_name": null,
+        "class": "7Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "06:30",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1904812501": {
+        "username": "LI_I_I_I_I_I_I_I_I",
+        "first_name": "𝓖𝓸𝓫𝓵𝓲𝓷",
+        "last_name": "ㅤ",
+        "class": "9В",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1877199691": {
+        "username": null,
+        "first_name": "Тимурка",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "995691544": {
+        "username": "moonwyy",
+        "first_name": "Матвей",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1133406913": {
+        "username": "stepler_rus",
+        "first_name": "Арсений",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "15:45",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5220433774": {
+        "username": "horokoyo",
+        "first_name": "Sofia",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5209674280": {
+        "username": "drawnex741",
+        "first_name": "drawnex",
+        "last_name": null,
+        "class": "10Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "433309074": {
+        "username": null,
+        "first_name": "Леонид",
+        "last_name": "Африканов",
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "14:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1003662152": {
+        "username": "ckrocki",
+        "first_name": "trewp",
+        "last_name": null,
+        "class": "9А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5584417531": {
+        "username": "Wellermey",
+        "first_name": "Константин",
+        "last_name": "Толоконцев",
+        "class": "11А",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "14:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1053792647": {
+        "username": "gxddvwn",
+        "first_name": "✞ gxd¿siemens",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1459994799": {
+        "username": null,
+        "first_name": "Artyom",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "900045885": {
+        "username": "lizochkoa",
+        "first_name": "𝙬𝙚𝙡𝙡𝙨 🎧",
+        "last_name": null,
+        "class": "8Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5382474089": {
+        "username": "hhhhh8373",
+        "first_name": "H",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "907911468": {
+        "username": "rooniiev",
+        "first_name": "ronnie",
+        "last_name": null,
+        "class": "11Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "948688199": {
+        "username": "B4aBad",
+        "first_name": "S4nsetz",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "05:00",
+                "mode": "today"
+            },
+            {
+                "value": "05:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "6018971519": {
+        "username": "wert303",
+        "first_name": "wert22",
+        "last_name": null,
+        "class": "8В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "2081908797": {
+        "username": "sonyafilinaa",
+        "first_name": "соня",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "784960595": {
+        "username": "iloveudrumov",
+        "first_name": "iloveudrumov",
+        "last_name": null,
+        "class": "11А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1368564671": {
+        "username": "POKATYBEZ_DEL",
+        "first_name": "Ольга Бузова",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "06:00",
+                "mode": "today"
+            },
+            {
+                "value": "14:00",
+                "mode": "tomorrow"
+            },
+            {
+                "value": "08:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5138355720": {
+        "username": "i7712nfk",
+        "first_name": "hecr2o",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6401065176": {
+        "username": "lin_chkaa",
+        "first_name": "алинка",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5995499296": {
+        "username": "Samokater_Tondi",
+        "first_name": "Tondi",
+        "last_name": "🛴❤️‍🔥",
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6332042365": {
+        "username": "Aaaanefory",
+        "first_name": "𝐊𝐫𝐞𝐨𝐥𝐥",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1465091294": {
+        "username": "frumeladka303",
+        "first_name": "frumeladka",
+        "last_name": null,
+        "class": "8А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1346841284": {
+        "username": "lightergo",
+        "first_name": "sltr",
+        "last_name": null,
+        "class": "8В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5044703547": {
+        "username": null,
+        "first_name": "Ирина",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5729605696": {
+        "username": "Hellbruher",
+        "first_name": "Hellbruher",
+        "last_name": null,
+        "class": "8Г",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1923087273": {
+        "username": null,
+        "first_name": "trxxz",
+        "last_name": null,
+        "class": "8Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1432737757": {
+        "username": "sv1ny",
+        "first_name": "sv1ny оу дап(",
+        "last_name": null,
+        "class": "9Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1359468027": {
+        "username": "tyko1q",
+        "first_name": "мотя",
+        "last_name": null,
+        "class": "8Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5076342153": {
+        "username": "XSnowKingX",
+        "first_name": "™SnowKing",
+        "last_name": null,
+        "class": "8Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5525781315": {
+        "username": "okxx10",
+        "first_name": "оксана",
+        "last_name": null,
+        "class": "8Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "07:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "1574135839": {
+        "username": "IDontKnowFRR",
+        "first_name": "Кто",
+        "last_name": "То",
+        "class": "8Г",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "18:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "1205666799": {
+        "username": "sleeppy_7",
+        "first_name": "...",
+        "last_name": "...",
+        "class": "9В",
+        "update_notifications": true,
+        "auto_schedule": []
+    },
+    "6358683641": {
+        "username": "pronina10",
+        "first_name": "Pronina.10",
+        "last_name": null,
+        "class": "5А",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "19:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5384262283": {
+        "username": "QwerTron",
+        "first_name": "QwerTron",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5596828406": {
+        "username": "brukva228",
+        "first_name": "кочерга",
+        "last_name": null,
+        "class": "8В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5764464376": {
+        "username": "gr33nshark",
+        "first_name": "GreenShark",
+        "last_name": null,
+        "class": "11В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5666039437": {
+        "username": "ZZZZZZZZZZZZZZZZZZZXZZZZZXXXZX",
+        "first_name": "Костя",
+        "last_name": null,
+        "class": "5А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1304305762": {
+        "username": "grachech",
+        "first_name": "Ам ам ам",
+        "last_name": "Пицца по грачевски",
+        "class": "8В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6278052308": {
+        "username": "SNOWEXER777",
+        "first_name": "Snowexer",
+        "last_name": null,
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6184701189": {
+        "username": null,
+        "first_name": "Хёнджинка♡",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5512572640": {
+        "username": "szRLwBAjXW",
+        "first_name": "Марк",
+        "last_name": "Алексин",
+        "class": "5А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1112115365": {
+        "username": "im_Lagunov",
+        "first_name": "минимиша💘",
+        "last_name": null,
+        "class": "5А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6527868971": {
+        "username": null,
+        "first_name": "Алика",
+        "last_name": null,
+        "class": "5А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5826912069": {
+        "username": "Sane4kaIpozonof",
+        "first_name": "СанечкаСаер19",
+        "last_name": null,
+        "class": "5А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1186450917": {
+        "username": "Popik_23",
+        "first_name": "Sasha_dem",
+        "last_name": null,
+        "class": "10Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1292219944": {
+        "username": "k_koreshok",
+        "first_name": "koreshok",
+        "last_name": null,
+        "class": "10Б",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "16:00",
+                "mode": "tomorrow"
+            },
+            {
+                "value": "08:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "7541187972": {
+        "username": "AkViL_kaq1",
+        "first_name": "Vika",
+        "last_name": null,
+        "class": "5А",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "14:30",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5122284649": {
+        "username": "ElenaSurnacheva83",
+        "first_name": "Елена",
+        "last_name": "Сурначева",
+        "class": "7Г",
+        "update_notifications": true,
+        "auto_schedule": [
+            {
+                "value": "15:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5284440850": {
+        "username": "Polkvapolka",
+        "first_name": "Полька💘",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5420155710": {
+        "username": "polinasoc",
+        "first_name": "Полина",
+        "last_name": null,
+        "class": "10В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5447876722": {
+        "username": "Zoekss_14_14",
+        "first_name": "Зᴏᴇчч🫂",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1389462888": {
+        "username": "SN3UHER",
+        "first_name": "ɑƿ੮ёⲙ",
+        "last_name": null,
+        "class": "7А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "495194982": {
+        "username": "rightsosk",
+        "first_name": "неваляшка",
+        "last_name": null,
+        "class": "8А",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "07:20",
+                "mode": "today"
+            }
+        ]
+    },
+    "6004979919": {
+        "username": null,
+        "first_name": "Art fly💋💍",
+        "last_name": null,
+        "class": "5А",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1772088631": {
+        "username": "kieshka",
+        "first_name": "ксюшка",
+        "last_name": null,
+        "class": null,
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5173346177": {
+        "username": "Katrishkiinn",
+        "first_name": "Катя",
+        "last_name": null,
+        "class": "6В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5749409331": {
+        "username": "Morsik311",
+        "first_name": "마샤",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "07:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5074016953": {
+        "username": "matkyz84",
+        "first_name": "🌪️𝕿𝖔𝖗𝖓𝖆𝖉𝖔",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "10:15",
+                "mode": "today"
+            }
+        ]
+    },
+    "6178132811": {
+        "username": "linaaqwu",
+        "first_name": "лерк",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6378058391": {
+        "username": "niastyu",
+        "first_name": "витёк",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": true,
+        "auto_schedule": []
+    },
+    "1394961495": {
+        "username": null,
+        "first_name": "Алёнка",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1944836849": {
+        "username": "stlovemilka",
+        "first_name": "александра",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5001488913": {
+        "username": "dwarfxxx",
+        "first_name": "🎀",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "17:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "2042502984": {
+        "username": "wellix_milci",
+        "first_name": "wellix#milsi.official",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6599091201": {
+        "username": null,
+        "first_name": "Ками🌿☀️",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "14:00",
+                "mode": "today"
+            }
+        ]
+    },
+    "6119065326": {
+        "username": "vikailaaa",
+        "first_name": "Вилка",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1925893804": {
+        "username": "kmalch1",
+        "first_name": "ketrin🦄",
+        "last_name": null,
+        "class": "10В",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "6966345689": {
+        "username": "EasyMusiakot",
+        "first_name": "Dim:Top",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "12:00",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "5235855438": {
+        "username": null,
+        "first_name": "Сергей",
+        "last_name": null,
+        "class": "7Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "5686795213": {
+        "username": "arbuz_top4ek",
+        "first_name": "arbuzik",
+        "last_name": null,
+        "class": "6Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "1459917554": {
+        "username": "da_ladno00",
+        "first_name": "darinki",
+        "last_name": null,
+        "class": "9Б",
+        "update_notifications": false,
+        "auto_schedule": [
+            {
+                "value": "16:30",
+                "mode": "tomorrow"
+            }
+        ]
+    },
+    "1103757596": {
+        "username": "hugsar363tterthandrugs",
+        "first_name": "Jimi Hndrx",
+        "last_name": null,
+        "class": "10Г",
+        "update_notifications": false,
+        "auto_schedule": []
+    },
+    "7039954181": {
+        "username": null,
+        "first_name": "𝕟𝕦𝕥𝕠𝕔𝕙𝕜𝕒",
+        "last_name": null,
+        "class": "8А",
         "update_notifications": false,
         "auto_schedule": []
     }
