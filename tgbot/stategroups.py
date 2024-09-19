@@ -14,3 +14,6 @@ class MakeReport(StatesGroup):
 
 class Broadcast(StatesGroup):
     waiting_for_message = State()
+
+class MessageTo(StatesGroup):
+    waiting_for_message = State()

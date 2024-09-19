@@ -12,7 +12,8 @@ from .stategroups import (
     ClassSelection,
     TimeSelection,
     MakeReport,
-    Broadcast
+    Broadcast,
+    MessageTo
 )
 
 from .utils import (
@@ -550,4 +551,27 @@ async def process_broadcast(message:Message, state:FSMContext):
     await state.clear()
     await message.answer("Рассылка завершена.")
    
-    
+@dp.message(Command("message_to"))
+async def cmd_message_to(message: Message, state:FSMContext):
+    if str(message.from_user.id) == settings.ADMIN:
+        await message.answer("Включил режим пересылки /cancel работает по базе")
+        await state.set_state(MessageTo.waiting_for_message)
+    else:
+        await message.answer("Не надо так делать...")
+
+@dp.message(MessageTo.waiting_for_message, Command("cancel"))
+async def cancel_message_to(message:Message, state: FSMContext):
+    await state.clear()
+    await message.answer("Выключил режим пересылки")
+
+@dp.message(MessageTo.waiting_for_message)
+async def process_message(message:Message, state: FSMContext):
+    if "&" in message.text:
+        dest_id = message.text.split("&")[0]
+        users = await get_users_for_broadcast()
+        if dest_id in users:
+            await bot.send_message(chat_id=dest_id, text=message.text.split("&")[1])
+        else:
+            await message.answer("Такого id нет")
+    else:
+        await message.answer("telegram_id&text_dlua_otpravki")
