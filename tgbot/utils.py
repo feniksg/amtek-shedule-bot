@@ -83,6 +83,31 @@ async def toggle_notifications(id):
     await users_save(users)
     return users[str(id)]['update_notifications']
 
+async def prepare_data(cls, day):
+    async with aiofiles.open(f'files/json/{day}_converted.json', mode='r', encoding='utf-8') as file:
+        content = await file.read()
+        data = json.loads(content)
+    cls_data = data.get(cls, None)
+    if cls:
+        result = ""
+        for item in cls_data.items():
+            lesson_data = item[1].split("&")
+            result+=f'{item[0]}. '
+            if lesson_data[0] == '-':
+                result+="⬜\n"
+            else:
+                result+=lesson_data[0] + ' '
+                if lesson_data[1] != '-' and lesson_data[2] == '-':
+                    result+=lesson_data[1]+'\n'
+                elif lesson_data[1] != '-' and lesson_data[2] != '-':
+                    result+=lesson_data[1]+'/'+lesson_data[2]+"\n"
+                else:
+                    result+='\n'                    
+        return result
+    return ""
+
+
+
 async def get_today_schedule(user_id):
     users = await users_get_or_create()
     user = users[str(user_id)]
@@ -92,8 +117,8 @@ async def get_today_schedule(user_id):
         if today.weekday() == 6:
             return 'sunday'
         today = today.strftime("%d.%m.%Y")
-        if await aiofiles.os.path.exists(f'files/imgs/croped_{today}/{today}_{cls}.png'):
-            return FSInputFile(f'files/imgs/croped_{today}/{today}_{cls}.png')
+        if await check_file(f'files/json/{today}_converted.json'):
+            return await prepare_data(cls, today)
         return 'no-data'
     return None
 
@@ -106,8 +131,8 @@ async def get_tomorrow_schedule(user_id):
         if tomorrow.weekday() == 6:
             return 'sunday'
         tomorrow = tomorrow.strftime("%d.%m.%Y")
-        if await check_file(f'files/imgs/croped_{tomorrow}/{tomorrow}_{cls}.png'):
-            return FSInputFile(f'files/imgs/croped_{tomorrow}/{tomorrow}_{cls}.png')
+        if await check_file(f'files/json/{tomorrow}_converted.json'):
+            return await prepare_data(cls, tomorrow)
         return 'no-data'
     return None
 
@@ -116,20 +141,20 @@ async def get_schedule_by_date(date, user_id):
     user = users[str(user_id)]
     cls = user.get('class', None)
     if cls:
-        if await check_file(f"files/imgs/croped_{date}/{date}_{cls}.png"):
-            return FSInputFile(f'files/imgs/croped_{date}/{date}_{cls}.png')
+        if await check_file(f"files/json/{date}_converted.json"):
+            return await prepare_data(cls, date)
         return 'no-data'
     return None
 
 async def get_available_dates():
-    dirs = await aiofiles.os.listdir('files/imgs/')
+    dirs = await aiofiles.os.listdir('files/json/')
     res = []
     for dir in dirs:
-        if dir.startswith("croped_"):
+        if dir.endswith("_converted.json"):
             if not 'updated' in dir:
                 res.append(str(dir))
     for item in res:
-        res[res.index(item)] = item.replace("croped_", "")
+        res[res.index(item)] = item.replace("_converted.json", "")
     res = sorted(res)
 
     for item in res:

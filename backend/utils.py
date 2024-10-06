@@ -1,9 +1,10 @@
 import requests, hashlib, os, json
+from requests import get
 from PIL import Image, ImageDraw
 from os import path, mkdir, rmdir, remove, listdir
 from datetime import datetime, timedelta
 import settings
-
+from bs4 import BeautifulSoup
 
 #region CONSTS
 
@@ -73,7 +74,7 @@ PIXEL_MAP = {
     '11Г':(2697, 4839, 3577, 5580 ),
 }
 
-
+ERROR_CLASS_TEMPLATE = ["11А", "11Б", "11В"]
 
 #endregion 
 
@@ -207,7 +208,29 @@ def get_dates_this_week():
     week_dates = [(today + timedelta(days=i)).strftime("%d.%m.%Y") for i in range(7)]
     return week_dates
 
-#endregion
+
+
+def prepare_data(cls, day):
+    with open(f'files/json/{day}_converted.json', mode='r', encoding='utf-8') as file:
+        data = json.load(file)
+    cls_data = data.get(cls, None)
+    if cls:
+        result = ""
+        for item in cls_data.items():
+            lesson_data = item[1].split("&")
+            result+=f'{item[0]}. '
+            if lesson_data[0] == '-':
+                result+="⬜\n"
+            else:
+                result+=lesson_data[0] + ' '
+                if lesson_data[1] != '-' and lesson_data[2] == '-':
+                    result+=lesson_data[1]+'\n'
+                elif lesson_data[1] != '-' and lesson_data[2] != '-':
+                    result+=lesson_data[1]+'/'+lesson_data[2]+"\n"
+                else:
+                    result+='\n'                    
+        return result
+    return ""
 
 
 def send_photo(token, chat_id, photo_path, caption=None):
@@ -220,12 +243,14 @@ def send_photo(token, chat_id, photo_path, caption=None):
     response = requests.post(url, files=files, data=data)
     return response.json()
 
-def send_message(token, chat_id, text):
+def send_message(token, chat_id, text, parse_mode=""):
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     data = {
         'chat_id': chat_id,
         'text': text
     }
+    if parse_mode:
+        data['parse_mode'] = parse_mode
     response = requests.post(url, data=data)
     return response.json()
 
@@ -236,8 +261,8 @@ def get_today_photo(user_id):
     if cls:
         day = datetime.now().astimezone(settings.TZ_MOSCOW)
         day = day.strftime("%d.%m.%Y")
-        if os.path.exists(f'files/imgs/croped_{day}/{day}_{cls}.png'):
-            return f'files/imgs/croped_{day}/{day}_{cls}.png'
+        if os.path.exists(f'files/json/{day}_converted.json'):
+            return prepare_data(cls, day)
         return None
     return None
 
@@ -248,8 +273,8 @@ def get_tomorrow_photo(user_id):
     if cls:
         day = datetime.now().astimezone(settings.TZ_MOSCOW) + timedelta(days=1)
         day = day.strftime("%d.%m.%Y")
-        if os.path.exists(f'files/imgs/croped_{day}/{day}_{cls}.png'):
-            return f'files/imgs/croped_{day}/{day}_{cls}.png'
+        if os.path.exists(f'files/json/{day}_converted.json'):
+            return prepare_data(cls, day)
         return None
     return None
 
@@ -257,6 +282,82 @@ def get_users():
     with open('files/json/users.json', 'r', encoding='utf-8') as file:
         users = json.load(file)
     return users
+
+#endregion
+
+#region HTM processing
+
+def get_avaible_files():
+    response = get(url=settings.SCHEDULE_URL)
+    if response.status_code == 200:
+        a_links = []
+        html = response.text
+        soup = BeautifulSoup(html, 'lxml')
+        table = soup.find("table")
+        rows = table.find_all('tr')
+        for row in rows:
+            cells = row.find_all('td')
+            for cell in cells:
+                links = cell.find_all('a')
+                for link in links:
+                    href = link.get('href')
+                    if href != "/":
+                        a_links.append(href)
+        return a_links
+    return []
+        
+def get_file_by_name(name: str):
+    if '.' in name:
+        if name.split('.')[-1] == 'htm':
+            html = get(url=f"{settings.SCHEDULE_URL}{name}").text
+            return process_htm_file(html, name)
+        if name.split('.')[-1] == 'jpg':
+            ...
+
+def process_htm_file(html, name):
+    data = {}
+    soup = BeautifulSoup(html, 'html.parser')
+    table = soup.find("table")
+    rows = table.find_all('tr')[5:]
+    current_classes = []
+    for row in rows:
+        cells = row.find_all("td")
+        match len(cells):
+            case 6 | 8:
+                current_classes = []
+                for cell in cells:
+                    value = cell.get_text().strip()
+                    if value:
+                        current_classes.append(value)
+                        data[value] = {}
+            case 14:
+                if current_classes == ERROR_CLASS_TEMPLATE:
+                    current_classes.append('11Г')
+                    data['11Г'] = {}
+                lesson_number = cells[0].get_text().strip()
+                if lesson_number:
+                    for cls in current_classes:
+                        data[cls][lesson_number] = ""
+                    clear_lesson_data = cells[1:-1]
+                    for i in range(len(clear_lesson_data)):
+                        current_class_index = i // 3
+                        if current_class_index <= len(current_classes)-1:
+                            text = clear_lesson_data[i].get_text().strip().replace('\r\n ', '')
+                            text.replace('\r\n', '')
+                            if text == "":
+                                text = "-"
+                            if data[current_classes[current_class_index]][lesson_number] != "":
+                                data[current_classes[current_class_index]][lesson_number] += "&" + f'{text}'
+                            else:
+                                data[current_classes[current_class_index]][lesson_number] += f'{text}'
+
+
+    # with open(f'files/json/{name[:-4]}_converted.json', 'w+', encoding='utf-8') as file:
+    #     json.dump(data, file, ensure_ascii=False, indent=2)
+    return data, name[:-4]
+
+
+#endregion
 
 if __name__ == "__main__":
     ...

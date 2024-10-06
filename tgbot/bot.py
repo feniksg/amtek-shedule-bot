@@ -265,7 +265,7 @@ async def call_choose_date(callback: CallbackQuery):
 
 @dp.callback_query(F.data.startswith("get_day_schedule_"))
 async def call_get_day_schedule(callback: CallbackQuery):
-    photo = await get_schedule_by_date(date=callback.data.split("_")[-1], user_id=callback.from_user.id)
+    schedule_data = await get_schedule_by_date(date=callback.data.split("_")[-1], user_id=callback.from_user.id)
     date = callback.data.split("_")[-1]
     date_obj = datetime.strptime(date, "%d.%m.%Y").astimezone(tz=settings.TZ_MOSCOW)
     weekday = date_obj.weekday()
@@ -284,15 +284,15 @@ async def call_get_day_schedule(callback: CallbackQuery):
             weekday = "Суббота"
         case 6:
             weekday = "Воскресенье"
-    if photo == "no-data":
+    if schedule_data == "no-data":
         await callback.message.answer(
             text="Расписания пока нет 😓"
         )
-    elif photo:
-        await bot.send_photo(
-            callback.from_user.id,
-            photo=photo,
-            caption=f"Расписание {date} ({weekday})"
+    elif schedule_data:
+        await bot.send_message(
+            chat_id=callback.from_user.id,
+            text=f"<b>Расписание на {date}. ({weekday})</b>\n" + schedule_data,
+            parse_mode="HTML",
         )
         await callback.answer()
     else:
@@ -305,7 +305,7 @@ async def call_get_day_schedule(callback: CallbackQuery):
 #region Расписание на сегодня \ завтра
 @dp.message(Command("today"))
 async def cmd_today(message:Message):
-    photo = await get_today_schedule(message.from_user.id)
+    schedule_data = await get_today_schedule(message.from_user.id)
     date = datetime.now()
     weekday = date.weekday()
     date = date.strftime("%d.%m.%Y")
@@ -324,19 +324,19 @@ async def cmd_today(message:Message):
             weekday = "Суббота"
         case 6:
             weekday = "Воскресенье"
-    if photo == "sunday":
+    if schedule_data == "sunday":
         await message.answer(
             text="Сегодня воскресенье, отдохни 😉"
         )
-    elif photo == "no-data":
+    elif schedule_data == "no-data":
         await message.answer(
             text="Расписания пока нет 😓"
         )
-    elif photo:
-        await bot.send_photo(
+    elif schedule_data:
+        await bot.send_message(
             chat_id=message.from_user.id,
-            photo=photo,
-            caption=f"Расписание на сегодня. {date} ({weekday})"
+            text=f"<b>Расписание на сегодня. {date} ({weekday})</b>\n" + schedule_data,
+            parse_mode="HTML",
         )
     else:
         await message.answer(
@@ -345,7 +345,7 @@ async def cmd_today(message:Message):
 
 @dp.message(Command("tomorrow"))
 async def cmd_tomorrow(message:Message):
-    photo = await get_tomorrow_schedule(message.from_user.id)
+    schedule_data = await get_tomorrow_schedule(message.from_user.id)
     date = datetime.now() + timedelta(days=1)
     weekday = date.weekday()
     date = date.strftime("%d.%m.%Y")
@@ -364,19 +364,19 @@ async def cmd_tomorrow(message:Message):
             weekday = "Суббота"
         case 6:
             weekday = "Воскресенье"
-    if photo == "sunday":
+    if schedule_data == "sunday":
         await message.answer(
             text="Завтра воскресенье, отдохни 😉"
         )
-    elif photo == "no-data":
+    elif schedule_data == "no-data":
         await message.answer(
             text="Расписания пока нет 😓"
         )
-    elif photo:
-        await bot.send_photo(
+    elif schedule_data:
+        await bot.send_message(
             chat_id=message.from_user.id,
-            photo=photo,
-            caption=f"Расписание на завтра. {date} ({weekday})"
+            text=f"<b>Расписание на завтра. {date} ({weekday})</b>\n" + schedule_data,
+            parse_mode="HTML",
         )
     else:
         await message.answer(

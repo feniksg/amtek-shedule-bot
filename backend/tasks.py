@@ -26,24 +26,45 @@ def notificate_add(date):
 
 @shared_task
 def check_for_changes():
-    week_dates = get_dates_this_week()
-    for date in week_dates:
-        if not os.path.exists(f'files/imgs/{date}.jpg'):
-            if getTimeTable(date):
-                cropTimeTable(date)
-                notificate_add.delay(date)
+    links = get_avaible_files()
+
+    for link in links:
+        if not os.path.exists(f'files/json/{link[:-4]}_converted.json'):
+            data, name = get_file_by_name(link)
+            with open(f'files/json/{name}_converted.json', 'w+', encoding='utf-8') as file:
+                json.dump(data, file, ensure_ascii=False, indent=2)
+            notificate_add.delay(name)
         else:
-            if getTempTimeTable(date):
-                if not are_images_identical(f'files/imgs/{date}.jpg', 'files/imgs/temp.jpg'):
-                    cropTimeTable(date, postfix="updated")
-                    changed = check_changes_current(date, postfix="updated")
-                    if changed:
-                        for cls in changed:
-                            notificate_update.delay(cls, date)
-                    removeDir(f"files/imgs/croped_{date}")
-                    os.rename(f"files/imgs/croped_{date}updated", f"files/imgs/croped_{date}")
-                    os.remove(f'files/imgs/{date}.jpg')
-                    os.rename(f'files/imgs/temp.jpg', f'files/imgs/{date}.jpg')
+            data, name = get_file_by_name(link)
+            with open(f'files/json/{name}_converted.json', 'r', encoding='utf-8') as file:
+                old_data = json.load(file)
+            flag = False
+            for item in data.items():
+                if item not in old_data.items():
+                    flag = True
+                    notificate_update.delay(item[0], name)
+            if flag:
+                with open(f'files/json/{name}_converted.json', 'w+', encoding='utf-8') as file:
+                    json.dump(data, file, ensure_ascii=False, indent=2)
+    
+    # week_dates = get_dates_this_week()
+    # for date in week_dates:
+    #     if not os.path.exists(f'files/imgs/{date}.jpg'):
+    #         if getTimeTable(date):
+    #             cropTimeTable(date)
+    #             notificate_add.delay(date)
+    #     else:
+    #         if getTempTimeTable(date):
+    #             if not are_images_identical(f'files/imgs/{date}.jpg', 'files/imgs/temp.jpg'):
+    #                 cropTimeTable(date, postfix="updated")
+    #                 changed = check_changes_current(date, postfix="updated")
+    #                 if changed:
+    #                     for cls in changed:
+    #                         notificate_update.delay(cls, date)
+    #                 removeDir(f"files/imgs/croped_{date}")
+    #                 os.rename(f"files/imgs/croped_{date}updated", f"files/imgs/croped_{date}")
+    #                 os.remove(f'files/imgs/{date}.jpg')
+    #                 os.rename(f'files/imgs/temp.jpg', f'files/imgs/{date}.jpg')
 
 @shared_task
 def send_notification_task(user_id, text):
@@ -52,7 +73,7 @@ def send_notification_task(user_id, text):
 @shared_task
 def send_timetable_task(user_id, mode):
     if mode == "today":
-        photo = get_today_photo(user_id)
+        schedule_data = get_today_photo(user_id)
         date = datetime.now()
         weekday = date.weekday()
         date = date.strftime("%d.%m.%Y")
@@ -71,10 +92,15 @@ def send_timetable_task(user_id, mode):
                 weekday = "Суббота"
             case 6:
                 weekday = "Воскресенье"
-        if photo:
-            send_photo(settings.TOKEN, chat_id=user_id, photo_path=photo, caption=f"Расписание на сегодня. {date} ({weekday})")
+        if schedule_data:
+            send_message(
+                settings.TOKEN,
+                chat_id=user_id,
+                text=f"<b>Расписание на сегодня. {date} ({weekday})</b>\n{schedule_data}",
+                parse_mode='HTML'
+            )
     elif mode == "tomorrow":
-        photo = get_tomorrow_photo(user_id)
+        schedule_data = get_tomorrow_photo(user_id)
         date = datetime.now() + timedelta(days=1)
         weekday = date.weekday()
         date = date.strftime("%d.%m.%Y")
@@ -93,8 +119,13 @@ def send_timetable_task(user_id, mode):
                 weekday = "Суббота"
             case 6:
                 weekday = "Воскресенье"
-        if photo:
-            send_photo(settings.TOKEN, chat_id=user_id, photo_path=photo, caption=f"Расписание на завтра. {date} ({weekday})")
+        if schedule_data:
+            send_message(
+                settings.TOKEN,
+                chat_id=user_id,
+                text=f"<b>Расписание на завтра. {date} ({weekday})</b>\n{schedule_data}",
+                parse_mode='HTML'
+            )
 
 @shared_task
 def check_auto_schedule():
@@ -118,7 +149,8 @@ def check_auto_schedule():
 def clean_old_day():
     yesterday = datetime.now().astimezone(settings.TZ_MOSCOW) - timedelta(days=1)
     yesterday = yesterday.strftime("%d.%m.%Y")
-    removeDir(f"files/imgs/croped_{yesterday}")
-    os.remove(f'files/imgs/{yesterday}.jpg')
+    # removeDir(f"files/imgs/croped_{yesterday}")
+    # os.remove(f'files/imgs/{yesterday}.jpg')
+    os.remove(f'files/json/{yesterday}_converted.json')
         
 
